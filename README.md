@@ -1,39 +1,39 @@
-# ??? WebApplication - Arquitetura Limpa com .NET 8
+#     WebApplication - Arquitetura Limpa com .NET 8
 
 Este projeto demonstra a implementação de uma **API RESTful** utilizando **Arquitetura Limpa**, **Princípios SOLID** e **Design Patterns** em .NET 8.
 
-## ?? Índice
+##    Índice
 
-- [?? Objetivo](#-objetivo)
-- [??? Arquitetura](#-arquitetura)
-- [?? Estrutura de Pastas](#-estrutura-de-pastas)
-- [??? Tecnologias](#-tecnologias)
-- [?? Como Executar](#-como-executar)
-- [?? Conceitos Explicados](#-conceitos-explicados)
-- [?? Autenticação JWT](#-autenticação-jwt)
-- [?? Banco de Dados](#-banco-de-dados)
-- [?? API Documentation](#-api-documentation)
-- [?? Testando a API](#-testando-a-api)
+- [   Objetivo](#-objetivo)
+- [    Arquitetura](#-arquitetura)
+- [   Estrutura de Pastas](#-estrutura-de-pastas)
+- [    Tecnologias](#-tecnologias)
+- [   Como Executar](#-como-executar)
+- [   Conceitos Explicados](#-conceitos-explicados)
+- [   Autenticação JWT](#-autenticação-jwt)
+- [   Banco de Dados](#-banco-de-dados)
+- [   API Documentation](#-api-documentation)
+- [   Testando a API](#-testando-a-api)
 
-## ?? Objetivo
+##    Objetivo
 
 Criar uma **API de autenticação** robusta, escalável e de fácil manutenção, seguindo as melhores práticas de desenvolvimento, servindo como **exemplo educacional** para desenvolvedores que desejam aprender sobre arquitetura de software.
 
-## ??? Arquitetura
+##     Arquitetura
 
 Este projeto implementa a **Arquitetura Limpa (Clean Architecture)** com **separação de responsabilidades** em camadas bem definidas:
 
 ```
-???????????????????    ???????????????????    ???????????????????
-?   Controllers   ??????    Services     ??????  Repositories   ?
-?  (Presentation) ?    ?   (Business)    ?    ?   (Data Access) ?
-???????????????????    ???????????????????    ???????????????????
-         ?                       ?                       ?
-         ?                       ?                       ?
-???????????????????    ???????????????????    ???????????????????
-?     Models      ?    ?   Interfaces    ?    ?    Database     ?
-?   (DTOs/Data)   ?    ?  (Contracts)    ?    ?   (Entities)    ?
-???????????????????    ???????????????????    ???????????????????
+                                                                 
+    Controllers             Services             Repositories    
+   (Presentation)          (Business)             (Data Access)  
+                                                                 
+                                                          
+                                                          
+                                                                 
+      Models               Interfaces              Database      
+    (DTOs/Data)           (Contracts)             (Entities)     
+                                                                 
 ```
 
 ### Fluxo de Dados:
@@ -44,37 +44,37 @@ Este projeto implementa a **Arquitetura Limpa (Clean Architecture)** com **separ
 5. Dados retornam pela mesma cadeia até o **Controller**
 6. **Controller** retorna resposta HTTP formatada
 
-## ?? Estrutura de Pastas
+##    Estrutura de Pastas
 
 ```
-?? WebApplication/
-??? ?? Controllers/           # ?? Controladores da API
-?   ??? AuthenticationController.cs
-??? ?? Data/                 # ??? Acesso a dados
-?   ??? AppDbContext.cs      # Contexto do Entity Framework
-?   ??? Entities/            # Entidades do banco de dados
-?       ??? TbUser.cs
-??? ?? Models/               # ?? DTOs e contratos
-?   ??? Authentication/      # DTOs de autenticação
-?       ??? LoginRequestDTO.cs
-?       ??? LoginResponseDTO.cs
-?       ??? RegisterRequestDTO.cs
-?       ??? RegisterResponseDTO.cs
-??? ?? Repositories/         # ??? Acesso a dados
-?   ??? IRepositories/       # Interfaces dos repositories
-?   ?   ??? IAuthenticationRepository.cs
-?   ??? AuthenticationRepository.cs
-??? ?? Services/            # ?? Lógica de negócio
-?   ??? IServices/          # Interfaces dos services
-?   ?   ??? IAuthenticationService.cs
-?   ??? AuthenticationService.cs
-?   ??? JwtService.cs
-??? ?? Program.cs           # ? Configuração da aplicação
-??? ?? appsettings.json     # ?? Configurações gerais
-??? ?? appsettings.Development.json # ?? Configurações de desenvolvimento
+   WebApplication/
+       Controllers/           #    Controladores da API
+        AuthenticationController.cs
+       Data/                 #     Acesso a dados
+        AppDbContext.cs      # Contexto do Entity Framework
+        Entities/            # Entidades do banco de dados
+            TbUser.cs
+       Models/               #    DTOs e contratos
+        Authentication/      # DTOs de autenticação
+            LoginRequestDTO.cs
+            LoginResponseDTO.cs
+            RegisterRequestDTO.cs
+            RegisterResponseDTO.cs
+       Repositories/         #     Acesso a dados
+        IRepositories/       # Interfaces dos repositories
+            IAuthenticationRepository.cs
+        AuthenticationRepository.cs
+       Services/            #    Lógica de negócio
+        IServices/          # Interfaces dos services
+            IAuthenticationService.cs
+        AuthenticationService.cs
+        JwtService.cs
+       Program.cs           #   Configuração da aplicação
+       appsettings.json     #    Configurações gerais
+       appsettings.Development.json #    Configurações de desenvolvimento
 ```
 
-## ??? Tecnologias
+##     Tecnologias
 
 - **Framework**: .NET 8.0 (LTS)
 - **ORM**: Entity Framework Core
@@ -84,7 +84,7 @@ Este projeto implementa a **Arquitetura Limpa (Clean Architecture)** com **separ
 - **Documentation**: Swagger/OpenAPI
 - **Architecture Patterns**: Clean Architecture, Repository Pattern, Dependency Injection
 
-## ?? Como Executar
+##    Como Executar
 
 ### Pré-requisitos
 - .NET 8 SDK
@@ -120,9 +120,9 @@ dotnet run
 5. **Acesse o Swagger**
    - Desenvolvimento: `https://localhost:7xxx/swagger`
 
-## ?? Conceitos Explicados
+##    Conceitos Explicados
 
-### ?? Princípios SOLID
+###    Princípios SOLID
 
 #### **S** - Single Responsibility Principle
 Cada classe tem uma única responsabilidade:
@@ -161,14 +161,14 @@ public class AuthenticationService : IAuthenticationService
 }
 ```
 
-### ??? Design Patterns Implementados
+###     Design Patterns Implementados
 
 #### Repository Pattern
 Abstração do acesso a dados:
 ```csharp
 public interface IAuthenticationRepository
 {
-    Task<TbUser?> GetUserByEmailAsync(string email);
+    Task<TbUser > GetUserByEmailAsync(string email);
     Task<TbUser> CreateUserAsync(TbUser user);
     Task<bool> EmailExistsAsync(string email);
 }
@@ -185,7 +185,7 @@ builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
 Separação entre entidades de domínio e dados de transporte:
 - `TbUser` (Entidade) vs `LoginRequestDTO` (Transporte)
 
-### ?? Entity Framework - Configuração Interna
+###    Entity Framework - Configuração Interna
 
 Implementamos um pattern personalizado onde cada entidade configura a si mesma:
 
@@ -202,12 +202,12 @@ public static void ConfigureModelBuilder(ModelBuilder modelBuilder)
 ```
 
 **Benefícios:**
-- ? AppDbContext mais limpo
-- ? Configuração co-localizada com a entidade
-- ? Melhor performance do IntelliSense
-- ? Facilita manutenção
+-   AppDbContext mais limpo
+-   Configuração co-localizada com a entidade
+-   Melhor performance do IntelliSense
+-   Facilita manutenção
 
-## ?? Autenticação JWT
+##    Autenticação JWT
 
 ### Como Funciona
 1. **Login**: Usuário envia email/senha
@@ -234,12 +234,12 @@ public static void ConfigureModelBuilder(ModelBuilder modelBuilder)
 [Authorize] // Requer JWT válido
 public async Task<ActionResult> DeleteUser()
 {
-    var userIdClaim = User.FindFirst("userId")?.Value; // Extrai dados do token
+    var userIdClaim = User.FindFirst("userId") .Value; // Extrai dados do token
     // ... lógica
 }
 ```
 
-## ?? Banco de Dados
+##    Banco de Dados
 
 ### Estrutura da Tabela TbUser
 ```sql
@@ -262,7 +262,7 @@ CREATE UNIQUE INDEX IX_TbUser_Email ON TbUser (Email);
 - **Email Único**: Índice único no campo Email
 - **Password Hash**: Senhas criptografadas com BCrypt
 
-## ?? API Documentation
+##    API Documentation
 
 ### Endpoints Disponíveis
 
@@ -303,13 +303,13 @@ Registra um novo usuário.
 }
 ```
 
-#### GET `/api/Authentication/me` ??
+#### GET `/api/Authentication/me`   
 Retorna dados do usuário autenticado (requer JWT).
 
-#### DELETE `/api/Authentication/user` ??
+#### DELETE `/api/Authentication/user`   
 Exclui (soft delete) o usuário autenticado (requer JWT).
 
-## ?? Testando a API
+##    Testando a API
 
 ### Usando cURL
 
@@ -347,7 +347,7 @@ curl -X GET "https://localhost:7xxx/api/Authentication/me" \
 3. Use o botão "Authorize" para configurar o JWT
 4. Teste os endpoints diretamente na interface
 
-## ?? Próximos Passos (Para Aprendizado)
+##    Próximos Passos (Para Aprendizado)
 
 Para expandir este projeto e aprender mais conceitos:
 
@@ -361,7 +361,7 @@ Para expandir este projeto e aprender mais conceitos:
 8. **Docker**: Containerização da aplicação
 9. **CI/CD**: Pipeline de deploy automatizado
 
-## ?? Contribuição
+##    Contribuição
 
 Este é um projeto educacional! Contribuições são bem-vindas:
 
@@ -371,10 +371,10 @@ Este é um projeto educacional! Contribuições são bem-vindas:
 4. Push para a branch (`git push origin feature/AmazingFeature`)
 5. Abra um Pull Request
 
-## ?? Licença
+##    Licença
 
 Este projeto está sob a licença MIT. Veja o arquivo `LICENSE` para mais detalhes.
 
 ---
 
-**?? Desenvolvido para fins educacionais - Demonstrando Arquitetura Limpa em .NET 8**
+**   Desenvolvido para fins educacionais - Demonstrando Arquitetura Limpa em .NET 8**
